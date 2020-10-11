@@ -1,3 +1,6 @@
+$("#success-alert").hide();
+$("#warning-alert").hide();
+
 var dragContainer = document.querySelector('.drag-container');
 var itemContainers = [].slice.call(document.querySelectorAll('.board-column-content'));
 var columnGrids = [];
@@ -30,8 +33,11 @@ itemContainers.forEach(function (container) {
             item.getElement().style.height = '';
             item.getGrid().refreshItems([item]);
 
-            console.log(item);
-            console.log([item._gridId]);
+            //console.log(item);
+            //console.log([item._gridId]);
+
+            //call method update mood
+            ajax_update_mood_user(item._gridId)
 
         })
         .on('layoutStart', function () {
@@ -46,3 +52,31 @@ boardGrid = new Muuri('.board', {
     dragEnabled: true,
     dragHandle: '.board-column-header'
 });
+
+
+function ajax_update_mood_user(gridId) {
+
+    $.ajax({
+        url: "/ajax",
+        type: "GET",
+        dataType: "json",
+        data: {
+            grid_id: gridId
+        },
+        async: true,
+        success: function(result) {
+            if (result == true) {
+                $("#success-alert").fadeTo(2000, 500)
+                    .slideUp(500, function () {
+                    $("#success-alert").slideUp(500);
+                });
+            } else {
+                $("#warning-alert").fadeTo(2000, 500)
+                    .slideUp(500, function () {
+                    $("#warning-alert").slideUp(500);
+                });
+            }
+        }
+    })
+    
+}
