@@ -31,19 +31,21 @@ class MoodController extends AbstractController
      */
     public function index(): Response {
 
-        /*
-        $mood = new Mood();
-        $mood->setIduser(1)
-            ->setMooduser('happy');
-        $this->em->persist($mood);
-        $this->em->flush();
-        */
+        dump($this->repository->getIdColumn());
+        dump($this->repository->getAllUserByMood());
 
-        //$mood_user = $this->repository->findOneBy(['iduser' => 2]);
-        //dump($mood_user);
-
-        //$update_mood = $this->repository->updateMood('2', 'sad');
-        //dump($update_mood);
+        /**
+         * get mood user by id grid
+         */
+        $request = 1;
+        $get_id_column = $this->repository->getIdColumn();
+        if (false !== $key = array_search($request, $get_id_column)) {
+            dump($key);
+        } else {
+            // do something else
+            // return false;
+            dump('');
+        }
 
         return $this->render('mood/index.html.twig');
         //return new Response('Les moods');
