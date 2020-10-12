@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 
+use App\Helpers\MoodHelper;
 use App\Repository\MoodRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,19 +35,6 @@ class MoodController extends AbstractController
 
         $users = $this->repository->getAllUserByMood();
 
-        /**
-         * get mood user by id grid
-         */
-        $request = 1;
-        $get_id_column = $this->repository->getIdColumn();
-        if (false !== $key = array_search($request, $get_id_column)) {
-            //dump($key);
-        } else {
-            // do something else
-            // return false;
-            //dump('');
-        }
-
         return $this->render('mood/index.html.twig', [
             'users_sad' => $users['sad'],
             'users_happy' => $users['happy'],
@@ -57,16 +45,24 @@ class MoodController extends AbstractController
 
 
     /**
-     * * @Route("/ajax", name="update_ajax")
+     * @Route("/ajax", name="update_ajax")
      * @param Request $request
      * @return JsonResponse|Response
      */
-    public function ajaxAction(Request $request) {
+    public function ajaxAction(Request $request, MoodHelper $helper) {
+
+        $get_id_column = $this->repository->getIdColumn();
+
         if ($request->isXMLHttpRequest()) {
-            $update_mood = $this->repository->updateMood('2', $request->get('grid_id'));
-            if($update_mood) {
-               //return new JsonResponse(array('data' => 'this is a json response'));
-               return new JsonResponse(true);
+
+            $mood = $helper->TransformIdColumnToMood($request->get('grid_id'),  $get_id_column);
+
+            if ($mood != null) {
+                $update_mood = $this->repository->updateMood('2', $mood);
+                if ($update_mood) {
+                    //return new JsonResponse(array('data' => 'this is a json response'));
+                    return new JsonResponse(true);
+                }
             } else {
                 return new JsonResponse(false);
             }
