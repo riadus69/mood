@@ -102,12 +102,17 @@ class MoodRepository extends ServiceEntityRepository
     private function selectUser($mood): array {
 
         $qb = $this->em->createQueryBuilder();
-        return $qb->select('m.id')
+        $req = $qb->select('m.id')
             ->from(Mood::class, 'm')
             ->where('m.mooduser = ?1')
             ->setParameter(1, $mood)
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
+            $result = $req->getResult();
+        if($result) {
+            return $result;
+        } else {
+            return [];
+        }
     }
 
 

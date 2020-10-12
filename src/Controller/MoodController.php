@@ -24,15 +24,15 @@ class MoodController extends AbstractController
         $this->repository = $repository;
     }
 
-
     /**
      * @Route("/mood", name="mood.index")
      * @return Response
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function index(): Response {
 
-        dump($this->repository->getIdColumn());
-        dump($this->repository->getAllUserByMood());
+        $users = $this->repository->getAllUserByMood();
 
         /**
          * get mood user by id grid
@@ -40,15 +40,19 @@ class MoodController extends AbstractController
         $request = 1;
         $get_id_column = $this->repository->getIdColumn();
         if (false !== $key = array_search($request, $get_id_column)) {
-            dump($key);
+            //dump($key);
         } else {
             // do something else
             // return false;
-            dump('');
+            //dump('');
         }
 
-        return $this->render('mood/index.html.twig');
-        //return new Response('Les moods');
+        return $this->render('mood/index.html.twig', [
+            'users_sad' => $users['sad'],
+            'users_happy' => $users['happy'],
+            'users_very_happy' => $users['very happy']
+        ]);
+
     }
 
 
