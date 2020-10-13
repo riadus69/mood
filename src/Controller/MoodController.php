@@ -57,14 +57,14 @@ class MoodController extends AbstractController
 
             $mood = $helper->TransformIdColumnToMood($request->get('grid_id'),  $get_id_column);
 
-            if ($mood != null) {
+            if ($mood) {
                 $update_mood = $this->repository->updateMood('2', $mood);
                 if ($update_mood) {
                     //return new JsonResponse(array('data' => 'this is a json response'));
                     return new JsonResponse(true);
                 }
             } else {
-                return new JsonResponse(false);
+                return new JsonResponse(array('data' => 'Mood not recovered'));
             }
         }
 

@@ -1,8 +1,3 @@
-// self executing function here
-//(function() {
-
-    $("#success-alert").hide();
-    $("#warning-alert").hide();
-    console.log('ping');
-
-//})();
+$("#success-alert").hide();
+$("#warning-alert").hide();
+$("#danger-alert").hide();

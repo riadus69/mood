@@ -16,9 +16,7 @@ class MoodHelper
         if (false !== $key = array_search($val, $get_grid)) {
             return $key;
         } else {
-            // do something else
-            // return false;
-            return ' ';
+            return false;
         }
     }
 

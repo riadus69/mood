@@ -73,6 +73,21 @@ function _ajax_update_mood_user(gridId) {
                     $("#warning-alert").slideUp(500);
                 });
             }
+        },
+        statusCode: {
+            //this is not ajax (la request n'est pas reçu par le controller)
+            400: function () {
+                $("#warning-alert").fadeTo(2000, 500)
+                    .slideUp(500, function () {
+                        $("#warning-alert").slideUp(500);
+                    });
+            },
+            500: function () {
+                $("#danger-alert").fadeTo(2000, 500)
+                    .slideUp(500, function () {
+                        $("#danger-alert").slideUp(500);
+                    });
+            }
         }
     })
     
