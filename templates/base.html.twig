@@ -20,7 +20,11 @@
         <a href="{{ path('home') }}" class="navbar-brand">Axentix</a>
         <div class="navbar-menu ml-auto">
             <a class="navbar-link" href="{{ path('mood.index') }}">Moods</a>
-            <a class="navbar-link" href="#">Link 2</a>
+
+            {% if app.user %}
+                <a class="navbar-link" href="{{ path('logout') }}">Se déconnecter</a>
+            {% endif %}
+
         </div>
     </nav>
 </header>

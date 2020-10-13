@@ -4,23 +4,27 @@
 
 {% block body %}
 
-    <div class="alert alert-success" id="success-alert">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <strong>Success! </strong> Avatar déplacé avec succés.
-    </div>
-    <div class="alert alert-warning" id="warning-alert">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <strong>Warning! </strong> Avatar non déplacé.
-    </div>
+    <div class="mt-4">
 
+        <div class="container">
+            <div class="alert alert-success" id="success-alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>Success! </strong> Avatar déplacé avec succés.
+            </div>
+            <div class="alert alert-warning" id="warning-alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>Warning! </strong> Avatar non déplacé.
+            </div>
+        </div>
 
-    <div class="drag-container"></div>
-    <div class="board">
+        <div class="drag-container"></div>
+        <div class="board">
 
-        {{  include('mood/component/column_mood.html.twig', {name_column: 'sad', users: users_sad})   }}
-        {{  include('mood/component/column_mood.html.twig', {name_column: 'happy', users: users_happy})   }}
-        {{  include('mood/component/column_mood.html.twig', {name_column: 'very-happy', users: users_very_happy})   }}
+            {{ include('mood/component/column_mood.html.twig', {name_column: 'sad', users: users_sad}) }}
+            {{ include('mood/component/column_mood.html.twig', {name_column: 'happy', users: users_happy}) }}
+            {{ include('mood/component/column_mood.html.twig', {name_column: 'very-happy', users: users_very_happy}) }}
 
+        </div>
     </div>
 
 
