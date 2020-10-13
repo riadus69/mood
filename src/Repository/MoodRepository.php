@@ -58,7 +58,7 @@ class MoodRepository extends ServiceEntityRepository
         $id_column_happy = (int)$this->getCountUser('happy');
 
         $column_id = [
-            "sad" => $id_column_sad,
+            "sad" => 1,
             "happy" => $id_column_sad+2,
             "very happy" => $id_column_sad+$id_column_happy+3
         ];
