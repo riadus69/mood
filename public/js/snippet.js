@@ -1,6 +1,3 @@
-$("#success-alert").hide();
-$("#warning-alert").hide();
-
 var dragContainer = document.querySelector('.drag-container');
 var itemContainers = [].slice.call(document.querySelectorAll('.board-column-content'));
 var columnGrids = [];
@@ -37,7 +34,7 @@ itemContainers.forEach(function (container) {
             //console.log([item._gridId]);
 
             //call method update mood
-            ajax_update_mood_user(item._gridId)
+            _ajax_update_mood_user(item._gridId)
 
         })
         .on('layoutStart', function () {
@@ -54,10 +51,10 @@ boardGrid = new Muuri('.board', {
 });
 
 
-function ajax_update_mood_user(gridId) {
+function _ajax_update_mood_user(gridId) {
 
     $.ajax({
-        url: "/ajax",
+        url: "/mood/ajax",
         type: "GET",
         dataType: "json",
         data: {

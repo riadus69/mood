@@ -45,7 +45,7 @@ class MoodController extends AbstractController
 
 
     /**
-     * @Route("/ajax", name="update_ajax")
+     * @Route("/mood/ajax", name="update_ajax")
      * @param Request $request
      * @return JsonResponse|Response
      */
