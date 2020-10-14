@@ -5,7 +5,8 @@
             <div class="board-column-content">
                 {% for user in users %}
                     <div class="board-item">
-                        <div class="board-item-content">
+                        <!-- <div class="board-item-content" data-id=""> -->
+                        <div class="board-item-content" value="{{ user.iduser }}">
                             <span>{{ user.id }}</span>
                         </div>
                     </div>

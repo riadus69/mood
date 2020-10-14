@@ -33,7 +33,21 @@ class MoodController extends AbstractController
      */
     public function index(): Response {
 
+
+        $user1_connect = $this->getUser()->getId();
+        dump($user1_connect);
+        $user1_connect = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        dump($user1_connect);
+
+
+
+        dump($this->repository->getIdColumn());
+
+
+
+
         $users = $this->repository->getAllUserByMood();
+        dump($users);
 
         return $this->render('mood/index.html.twig', [
             'users_sad' => $users['sad'],
@@ -52,23 +66,26 @@ class MoodController extends AbstractController
     public function ajaxAction(Request $request, MoodHelper $helper) {
 
         $get_id_column = $this->repository->getIdColumn();
+        $id_user = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
-        if ($request->isXMLHttpRequest()) {
+        if ($id_user) {
+            if ($request->isXMLHttpRequest()) {
 
-            $mood = $helper->TransformIdColumnToMood($request->get('grid_id'),  $get_id_column);
+                $mood = $helper->TransformIdColumnToMood($request->get('grid_id'), $get_id_column);
 
-            if ($mood) {
-                $update_mood = $this->repository->updateMood('2', $mood);
-                if ($update_mood) {
-                    //return new JsonResponse(array('data' => 'this is a json response'));
-                    return new JsonResponse(true);
+                if ($mood != null) {
+                    $update_mood = $this->repository->updateMood($id_user, $mood);
+                    if ($update_mood) {
+                        //return new JsonResponse(array('data' => 'this is a json response'));
+                        return new JsonResponse(true);
+                    }
                 }
-            } else {
-                return new JsonResponse(array('data' => 'Mood not recovered'));
-            }
+                else {
+                    return new JsonResponse(false);
+                }
+            } else return new Response('This is not ajax!', 400);
         }
 
-        return new Response('This is not ajax!', 400);
     }
 
 
