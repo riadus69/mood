@@ -1,6 +1,23 @@
-.primary{
-    background-color: red;
+/**
+Card avatar
+ */
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
 }
+div.card-horizontal .card-body {
+    padding: 1rem;
+}
+div.card-horizontal .card-title {
+font-family: "Comic Sans MS", cursive, sans-serif;
+}
+/**
+Spécialement pour library Axentix
+ */
+.primary{
+    background-color: darkgrey;
+}
+
 
 /**
 Spécialement pour library
@@ -61,6 +78,7 @@ body {
     font-weight: bold;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    font-size: 25px;
 }
 @media (max-width: 600px) {
     .board-column-header {
@@ -105,7 +123,7 @@ body {
 }
 .board-item-content {
     position: relative;
-    padding: 20px;
+    #padding: 20px;
     background: #fff;
     border-radius: 4px;
     font-size: 17px;

@@ -1,0 +1,16 @@
+{% for user in users %}
+    <div class="board-item">
+        <div class="board-item-content">
+            <div class="row">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img class="rounded-circle" src="http://via.placeholder.com/100x100" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ user.iduser }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

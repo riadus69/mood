@@ -1,16 +1,18 @@
 <div class="board-column {{ name_column }}">
     <div class="board-column-container">
-        <div class="board-column-header">{{ name_column }}</div>
+        <div class="board-column-header">
+            {{ name_column }}
+            {% if name_column == 'sad' %}
+                <i class="far fa-sad-tear"></i>
+            {% elseif name_column == 'happy' %}
+                <i class="far fa-smile-wink"></i>
+            {% else %}
+                <i class="far fa-laugh-squint"></i>
+            {% endif %}
+        </div>
         <div class="board-column-content-wrapper">
             <div class="board-column-content">
-                {% for user in users %}
-                    <div class="board-item">
-                        <!-- <div class="board-item-content" data-id=""> -->
-                        <div class="board-item-content" value="{{ user.iduser }}">
-                            <span>{{ user.id }}</span>
-                        </div>
-                    </div>
-                {% endfor %}
+                {{ include('mood/component/avatar_card.html.twig', {users: users}) }}
             </div>
         </div>
     </div>
