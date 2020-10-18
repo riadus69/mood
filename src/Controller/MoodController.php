@@ -21,8 +21,9 @@ class MoodController extends AbstractController
      * MoodController constructor.
      * @param MoodRepository $repository
      */
-    public function __construct (MoodRepository $repository) {
+    public function __construct (MoodRepository $repository, MoodHelper $helper) {
         $this->repository = $repository;
+        $this->helper = $helper;
     }
 
     /**
@@ -33,26 +34,12 @@ class MoodController extends AbstractController
      */
     public function index(): Response {
 
-
-        $user1_connect = $this->getUser()->getId();
-        dump($user1_connect);
-        $user1_connect = $this->get('security.token_storage')->getToken()->getUser()->getId();
-        dump($user1_connect);
-
-
-
-        dump($this->repository->getIdColumn());
-
-
-
-
         $users = $this->repository->getAllUserByMood();
-        dump($users);
 
         return $this->render('mood/index.html.twig', [
-            'users_sad' => $users['sad'],
-            'users_happy' => $users['happy'],
-            'users_very_happy' => $users['very happy']
+            'users_sad' => $this->helper->shuffle_assoc($users['sad']),
+            'users_happy' => $this->helper->shuffle_assoc($users['happy']),
+            'users_very_happy' => $this->helper->shuffle_assoc($users['very happy'])
         ]);
 
     }
@@ -63,7 +50,7 @@ class MoodController extends AbstractController
      * @param Request $request
      * @return JsonResponse|Response
      */
-    public function ajaxAction(Request $request, MoodHelper $helper) {
+    public function ajaxAction(Request $request) {
 
         $get_id_column = $this->repository->getIdColumn();
         $id_user = $this->get('security.token_storage')->getToken()->getUser()->getId();
@@ -71,7 +58,7 @@ class MoodController extends AbstractController
         if ($id_user) {
             if ($request->isXMLHttpRequest()) {
 
-                $mood = $helper->TransformIdColumnToMood($request->get('grid_id'), $get_id_column);
+                $mood = $this->helper->TransformIdColumnToMood($request->get('grid_id'), $get_id_column);
 
                 if ($mood != null) {
                     $update_mood = $this->repository->updateMood($id_user, $mood);
