@@ -1,7 +1,7 @@
 <div class="board-column {{ name_column }}">
     <div class="board-column-container">
         <div class="board-column-header">
-            {{ name_column }}
+            {{ name_column|replace({'-': " "}) }}
             {% if name_column == 'sad' %}
                 <i class="far fa-sad-tear"></i>
             {% elseif name_column == 'happy' %}

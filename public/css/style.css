@@ -80,9 +80,11 @@ body {
     color: #fff;
     border-radius: 5px 5px 0 0;
     font-weight: bold;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    letter-spacing: 1px;
     font-size: 25px;
+}
+.board-column-header:first-letter {
+    text-transform: uppercase;
 }
 @media (max-width: 600px) {
     .board-column-header {
