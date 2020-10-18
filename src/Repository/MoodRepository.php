@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Mood;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -102,9 +103,10 @@ class MoodRepository extends ServiceEntityRepository
     private function selectUser($mood): array {
 
         $qb = $this->em->createQueryBuilder();
-        $req = $qb->select('m.id, m.iduser')
+        $req = $qb->select('u.username, m.iduser, m.avatarname')
             ->from(Mood::class, 'm')
-            ->where('m.mooduser = ?1')
+            ->join(User::class, 'u')
+            ->where('m.mooduser = ?1', 'u.id = m.iduser')
             ->setParameter(1, $mood)
             ->getQuery();
             $result = $req->getResult();

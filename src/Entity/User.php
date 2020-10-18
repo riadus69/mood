@@ -29,10 +29,6 @@ class User implements UserInterface, \Serializable
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $avatar;
 
     public function getId(): ?int
     {
@@ -59,18 +55,6 @@ class User implements UserInterface, \Serializable
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    public function getAvatar(): ?string
-    {
-        return $this->avatar;
-    }
-
-    public function setAvatar(string $avatar): self
-    {
-        $this->avatar = $avatar;
 
         return $this;
     }
@@ -125,8 +109,7 @@ class User implements UserInterface, \Serializable
         return serialize([
             $this->id,
             $this->username,
-            $this->password,
-            $this->avatar
+            $this->password
         ]);
     }
 
@@ -143,8 +126,7 @@ class User implements UserInterface, \Serializable
         list(
             $this->id,
             $this->username,
-            $this->password,
-            $this->avatar
+            $this->password
             //on instancie pas les classes c'est pour ça j'ai mis false
             ) = unserialize($serialized, ['allowed_classes' => false]); //false pour ne pas instancier les classes quand elles sont dans la var $serialized
     }
