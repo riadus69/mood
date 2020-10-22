@@ -12,33 +12,6 @@ itemContainers.forEach(function (container) {
             return columnGrids;
         },
 
-        dragStartPredicate: function (item, event) {
-            // Prevent first item from being dragged.
-            //console.log(item.getItems());
-
-            $('.board-item-content').click(function () {
-
-                //get code zone since twig template
-
-
-                var res =  $(this).attr('value');
-                console.log(res);
-
-                if (grid.getItems().indexOf(item) === 0) {
-                    console.log(grid.getItems().indexOf(item));
-                    return false;
-                }
-
-            });
-
-            /*if (grid.getItems().indexOf(item) === 0) {
-                console.log(grid.getItems().indexOf(item));
-                return false;
-            }*/
-            // For other items use the default drag start predicate.
-            return Muuri.ItemDrag.defaultStartPredicate(item, event);
-        },
-
         dragContainer: dragContainer,
         dragAutoScroll: {
             targets: (item) => {
@@ -119,12 +92,4 @@ function _ajax_update_mood_user(gridId) {
         }
     })
     
-}
-
-function testiduser() {
-    /*$('.board-item-content').click(function () {
-        var res = $(this).attr('value');
-        console.log(res);
-        return res;
-    })*/
 }
