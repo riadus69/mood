@@ -25,7 +25,7 @@
             <a class="navbar-link" href="{{ path('mood.index') }}">Moods</a>
 
             {% if app.user %}
-                <a class="navbar-link" href="{{ path('logout') }}">Se déconnecter</a>
+                <a class="navbar-link" href="{{ path('logout') }}" onclick="return myconfirm()">Se déconnecter</a>
             {% endif %}
 
         </div>
