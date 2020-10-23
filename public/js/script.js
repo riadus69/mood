@@ -3,13 +3,9 @@ $("#warning-alert").hide();
 $("#danger-alert").hide();
 
 
-$('.board-item-content').click(function () {
+function myconfirm() {
+    if(confirm('Are You Sure ...'))
+        return true;
+    return false;
+}
 
-    //get code zone since twig template
-   // var data = $(this).data();
-   // console.log(data.id);
-
-    var res =  $(this).attr('value');
-   // console.log(res);
-
-});
