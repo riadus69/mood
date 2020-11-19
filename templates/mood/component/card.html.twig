@@ -2,14 +2,14 @@
     <div class="board-item">
         <div class="board-item-content">
             <div class="row">
-                <div class="card-horizontal">
+                <div class="card-horizontal container">
                     <div class="img-square-wrapper">
                         <img class="avatar-mood rounded-circle"
                              src="{{ vich_uploader_asset(user, 'imageFile', 'App\\Entity\\Mood') }}"
                              alt="card-img-top" />
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">{{ user.username }}</h4>
+                        <h6 class="card-title">{{ user.username }}</h6>
                     </div>
                 </div>
             </div>

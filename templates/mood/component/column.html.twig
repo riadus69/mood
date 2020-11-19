@@ -2,7 +2,9 @@
     <div class="board-column-container">
         <div class="board-column-header">
             {{ name_column|replace({'-': " "}) }}
-            {% if name_column == 'sad' %}
+            {% if name_column == 'absent' %}
+                <i class="fas fa-sign-out-alt"></i>
+            {% elseif name_column == 'sad' %}
                 <i class="far fa-sad-tear"></i>
             {% elseif name_column == 'happy' %}
                 <i class="far fa-smile-wink"></i>

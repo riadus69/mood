@@ -6,13 +6,15 @@ Card avatar
     flex: 1 1 auto;
 }
 div.card-horizontal .card-body {
-    padding: 1rem;
+    #padding: 1rem;
+    padding: 0;
 }
 div.card-horizontal .card-title {
     font-family: "Comic Sans MS", cursive, sans-serif;
+    margin-left: 15px;
 }
 img.avatar-mood {
-    width: 100px;
+    width: 50px;
     height: auto;
 }
 /**
@@ -54,7 +56,7 @@ body {
     left: 0;
     top: 0;
     padding: 0 10px;
-    width: calc(100% / 3);
+    width: calc(100% / 4);
     z-index: 1;
 }
 .board-column.muuri-item-releasing {
@@ -91,6 +93,9 @@ body {
         text-indent: -1000px;
     }
 }
+.board-column.absent .board-column-header {
+    background: #C82829;
+}
 .board-column.sad .board-column-header {
     background: black;
 }
@@ -98,12 +103,12 @@ body {
     background: #2ac06d;
 }
 .board-column.very-happy .board-column-header {
-    background: #4A9FF9;
+    background: #6185AB;
 }
 .board-column-content-wrapper {
     position: relative;
     padding: 8px;
-    background: #f0f0f0;
+    #background: #f0f0f0;
     height: calc(100vh - 90px);
     overflow-y: auto;
     border-radius: 0 0 5px 5px;
@@ -130,7 +135,7 @@ body {
 .board-item-content {
     position: relative;
     padding: 10px;
-    background: #fff;
+    background: #d0d0d0;
     border-radius: 4px;
     font-size: 17px;
     cursor: pointer;

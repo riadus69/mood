@@ -24,6 +24,7 @@
         <div class="drag-container"></div>
         <div class="board">
 
+            {{ include('mood/component/column.html.twig', {name_column: 'absent', users: users_absent}) }}
             {{ include('mood/component/column.html.twig', {name_column: 'sad', users: users_sad}) }}
             {{ include('mood/component/column.html.twig', {name_column: 'happy', users: users_happy}) }}
             {{ include('mood/component/column.html.twig', {name_column: 'very-happy', users: users_very_happy}) }}

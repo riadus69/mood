@@ -55,13 +55,15 @@ class MoodRepository extends ServiceEntityRepository
      */
     public function getIdColumn(): array {
 
+        $id_column_absent = (int)$this->getCountUser('absent');
         $id_column_sad = (int)$this->getCountUser('sad');
         $id_column_happy = (int)$this->getCountUser('happy');
 
         $column_id = [
-            "sad" => 1,
-            "happy" => $id_column_sad+2,
-            "very happy" => $id_column_sad+$id_column_happy+3
+            "absent" => 1,
+            "sad" => $id_column_absent+2,
+            "happy" => $id_column_absent+$id_column_sad+3,
+            "very happy" => $id_column_absent+$id_column_sad+$id_column_happy+4
         ];
 
         return $column_id;
@@ -73,6 +75,7 @@ class MoodRepository extends ServiceEntityRepository
     public function getAllUserByMood():array {
 
         return array(
+            "absent" => $this->selectUser('absent'),
             "sad" => $this->selectUser('sad'),
             "happy" => $this->selectUser('happy'),
             "very happy" => $this->selectUser('very happy')

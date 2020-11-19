@@ -36,7 +36,10 @@ class MoodController extends AbstractController
 
         $users = $this->repository->getAllUserByMood();
 
+        //dump($this->repository->getIdColumn());
+
         return $this->render('mood/index.html.twig', [
+            'users_absent' => $this->helper->shuffle_assoc($users['absent']),
             'users_sad' => $this->helper->shuffle_assoc($users['sad']),
             'users_happy' => $this->helper->shuffle_assoc($users['happy']),
             'users_very_happy' => $this->helper->shuffle_assoc($users['very happy'])
